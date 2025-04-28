@@ -18,13 +18,19 @@ const Navbar = () => {
           <>
           <Link to={"/add"} className="btn btn-info mx-2">Add</Link>
         <Link to={"/profile"} className="btn btn-warning mx-2">Profile</Link>
+        <Link to={"/contact" }className="btn btn-warning mx-2">Contact</Link>
+        <Link to={"/aboutpage" }className="btn btn-warning mx-2">AboutPage</Link>
         <div className="btn btn-danger mx-2" onClick={logOut}>LogOut</div>
+        <Link to="/myorders" className="btn btn-success mx-2">My Orders</Link>
+        <Link to="/orderform" className="btn btn-success mx-2"> OrdersForm</Link>
+
           </>
         )}
         {!isAuthenticated&&(
           <>
           <Link to={"/login"} className="btn btn-primary mx-2">Login</Link>
           <Link to={"/register" }className="btn btn-warning mx-2">Register</Link>
+          {/* <Link to={"/contact" }className="btn btn-warning mx-2">Contact</Link> */}
 
           </>
         )}

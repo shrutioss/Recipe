@@ -5,15 +5,15 @@ const Profile = () => {
   return (
     <>
       <div className="container text-center my-3">
-        <h1>Welcom, {user?.name}</h1>
-        <h2>{user?.gmail}</h2>
+        <h1>Welcome, {user?.username}</h1>
+        <h2>{user?.usergmail}</h2>
       </div>
 
       <div className="container">
         <div className=" text-center mx-auto" style={{ width: "1200px" }}>
           <div className="row d-flex justify-content-center align-items-center">
             {userRecipe?.map((data) => (
-              <div key={data._id} className="col-md-3 my-3">
+              <div key={data?._id} className="col-md-3 my-3">
                   <div className="d-flex justify-content-center align-items-center p-3">
                     <img
                       src={data.imgurl}

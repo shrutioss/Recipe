@@ -9,6 +9,11 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import FetchRecipeById from "./components/FetchRecipeById";
 import Detail from './components/Detail';
+import Contact from './components/contact';
+import AboutPage from './components/Aboutpage';
+import MyOrders from './components/MyOrder';
+import OrderForm from './components/OrderForm';
+
 
 
 const App = () => {
@@ -26,6 +31,12 @@ const App = () => {
       <Route path="/add" element={<AddRecipe />} />
       {/* <Route path="/home" element={<Home />} /> */}
       <Route path="/:id" element={<Detail />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/aboutpage" element={<AboutPage />} />
+      <Route path="/myorders" element={<MyOrders />} />
+      <Route path="/orderform" element={<OrderForm />} />
+     
+
       </Routes>
     </Router>
     </>
