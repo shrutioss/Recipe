@@ -78,16 +78,80 @@
 // export default FetchRecipeById;
 
 
+// import React, { useContext, useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom'; // useNavigate for React Router v6
+// import { AppContext } from '../context/App_Context';
+// import { Link, useLocation } from 'react-router-dom';
+
+// function FetchRecipeById({ id }) {
+//   const location = useLocation();
+//   const { getRecipeById } = useContext(AppContext);
+//   const [recipe, setRecipe] = useState("");
+
+//   const navigate = useNavigate();  // For React Router v6
+
+//   useEffect(() => {
+//     const fetchRecipe = async (id) => {
+//       const result = await getRecipeById(id);
+//       console.log("recipe by id", result);
+//       setRecipe(result.data.recipe);
+//     };
+
+//     fetchRecipe(id);
+//   }, [id]);
+
+//   const handleOrderClick = () => {
+//     // Navigate to OrderForm page and pass recipe as state (using navigate instead of history.push)
+//     navigate('/orderform', { state: { recipe } });
+//   };
+
+//   return (
+//     <div className='text-center'>
+//       <div className="text-center" 
+//         style={{
+//           display: 'flex',
+//           justifyContent: 'center',
+//           alignItems: 'center',
+//           flexDirection: 'column'
+//         }}>
+//         <div className="d-flex justify-content-center align-items-center p-3">
+//           <img
+//             src={recipe?.imgurl}
+//             className="card-img-top"
+//             alt="..."
+//             style={{
+//               width: "200px",
+//               height: "200px",
+//               borderRadius: '10px',
+//               border: '2px solid yellow'
+//             }}
+//           />
+//         </div>
+//         <h3>{recipe?.title}</h3>
+//       </div>
+
+//       <Link to={"/"} className='btn btn-warning my-5'>Back to Home</Link>
+
+//       {/* Order button */}
+//       <button 
+//         onClick={handleOrderClick} 
+//         className='btn btn-primary my-2'>
+//         Order
+//       </button>
+//     </div>
+//   );
+// }
+
+// export default FetchRecipeById;
+
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate for React Router v6
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { AppContext } from '../context/App_Context';
-import { Link, useLocation } from 'react-router-dom';
 
 function FetchRecipeById({ id }) {
   const location = useLocation();
   const { getRecipeById } = useContext(AppContext);
   const [recipe, setRecipe] = useState("");
-
   const navigate = useNavigate();  // For React Router v6
 
   useEffect(() => {
@@ -101,13 +165,13 @@ function FetchRecipeById({ id }) {
   }, [id]);
 
   const handleOrderClick = () => {
-    // Navigate to OrderForm page and pass recipe as state (using navigate instead of history.push)
+    // Navigate to OrderForm page and pass recipe as state
     navigate('/orderform', { state: { recipe } });
   };
 
   return (
-    <div className='text-center'>
-      <div className="text-center" 
+    <div className='text-center' style={{ backgroundColor: 'black', minHeight: '100vh', color: 'white' }}>
+      <div
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -118,7 +182,7 @@ function FetchRecipeById({ id }) {
           <img
             src={recipe?.imgurl}
             className="card-img-top"
-            alt="..."
+            alt="Recipe"
             style={{
               width: "200px",
               height: "200px",
@@ -128,18 +192,28 @@ function FetchRecipeById({ id }) {
           />
         </div>
         <h3>{recipe?.title}</h3>
+
+        {/* ✅ Recipe Instructions */}
+        {recipe?.instruction && (
+          <div style={{ maxWidth: '600px', margin: '20px auto', color: '#ccc', textAlign: 'left' }}>
+            <h4>Instruction:</h4>
+            <p>{recipe.instruction}</p>
+          </div>
+        )}
+
+        {/* Back to Home Button */}
+        <Link to={"/"} className='btn btn-warning my-4'>Back to Home</Link>
+
+        {/* Order Button */}
+        <button 
+          onClick={handleOrderClick} 
+          className='btn btn-primary mb-4'>
+          Order
+        </button>
       </div>
-
-      <Link to={"/"} className='btn btn-warning my-5'>Back to Home</Link>
-
-      {/* Order button */}
-      <button 
-        onClick={handleOrderClick} 
-        className='btn btn-primary my-2'>
-        Order
-      </button>
     </div>
   );
 }
 
 export default FetchRecipeById;
+
